@@ -2,7 +2,17 @@ import endPoints from 'widget/api/endPoints';
 import { API } from 'widget/helpers/axios';
 
 const createConversationAPI = async content => {
-  const urlData = endPoints.createConversation(content);
+  const messageContent = content.message || '';
+
+  const enrichedContent = {
+    ...content,
+    additional_attributes: {
+      ...(content.additional_attributes || {}),
+      message: messageContent,
+    },
+  };
+
+  const urlData = endPoints.createConversation(enrichedContent);
   return API.post(urlData.url, urlData.params);
 };
 

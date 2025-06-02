@@ -269,6 +269,8 @@ const conversationWithMeta = {
       cc_emails: [],
       bcc_emails: [],
       to_emails: [],
+      Sentiment: {},
+      Language: {},
     },
     sender_type: 'User',
     sender_id: 1,

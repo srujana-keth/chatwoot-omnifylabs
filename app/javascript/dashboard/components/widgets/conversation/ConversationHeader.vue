@@ -1,3 +1,4 @@
+<!-- eslint-disable @intlify/vue-i18n/no-raw-text -->
 <script>
 import { mapGetters } from 'vuex';
 import { useKeyboardEvents } from 'dashboard/composables/useKeyboardEvents';
@@ -200,6 +201,25 @@ export default {
           :conversation-id="currentChat.id"
         />
         <MoreActions :conversation-id="currentChat.id" />
+      </div>
+
+      <div v-if="chat.content_attributes" class="mt-2">
+        <div class="my-2">
+          <strong>{{ $t('CONVERSATION_PAGE.SENTIMENT') }}</strong>
+          <strong
+            :class="`sentiment-${conversation.content_attributes.sentiment}`"
+          >
+            {{ conversation.content_attributes.sentiment }}
+          </strong>
+        </div>
+        <div class="my-2">
+          <strong>{{ $t('CONVERSATION_PAGE.LANGUAGE') }}</strong>
+          <strong
+            :class="`sentiment-${conversation.content_attributes.sentiment}`"
+          >
+            {{ chat.content_attributes.language || 'N/A' }}
+          </strong>
+        </div>
       </div>
     </div>
   </div>
