@@ -8,6 +8,7 @@
 #  assignee_last_seen_at  :datetime
 #  cached_label_list      :text
 #  contact_last_seen_at   :datetime
+#  content_attributes     :json
 #  custom_attributes      :jsonb
 #  first_reply_created_at :datetime
 #  identifier             :string
@@ -117,6 +118,9 @@ class Conversation < ApplicationRecord
   after_update_commit :execute_after_update_commit_callbacks
   after_create_commit :notify_conversation_creation
   after_create_commit :load_attributes_created_by_db_triggers
+
+  before_create :initialize_content_attributes
+  after_commit :enqueue_enrichment_job, on: [:create, :update]
 
   delegate :auto_resolve_after, to: :account
 
@@ -297,7 +301,25 @@ class Conversation < ApplicationRecord
   trigger.before(:insert).for_each(:row) do
     "NEW.display_id := nextval('conv_dpid_seq_' || NEW.account_id);"
   end
-end
 
+  def initialize_content_attributes
+    message_content = begin
+      additional_attributes['message']
+    rescue StandardError
+      nil
+    end
+
+    if message_content.present?
+      enrichment = SentimentAnalyzerService.new(message_content).analyze
+      self[:content_attributes] = enrichment
+    else
+      self[:content_attributes] = { sentiment: 'neutral', language: 'en' }
+    end
+  end
+
+  def enqueue_enrichment_job
+    ConversationEnrichmentJob.perform_later(id)
+  end
+end
 Conversation.include_mod_with('Concerns::Conversation')
 Conversation.prepend_mod_with('Conversation')

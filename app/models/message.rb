@@ -397,6 +397,15 @@ class Message < ApplicationRecord
     conversation.update_columns(last_activity_at: created_at)
     # rubocop:enable Rails/SkipsModelValidations
   end
+
+  after_create_commit :trigger_conversation_enrichment
+
+  def trigger_conversation_enrichment
+    return unless incoming?
+    return unless content.present?
+
+    ConversationEnrichmentJob.perform_later(conversation_id)
+  end
 end
 
 Message.prepend_mod_with('Message')
