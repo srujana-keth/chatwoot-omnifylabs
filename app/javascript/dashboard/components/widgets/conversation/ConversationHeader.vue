@@ -205,20 +205,20 @@ export default {
 
       <div v-if="chat.content_attributes" class="mt-2">
         <div class="my-2">
-          <strong>{{ $t('CONVERSATION_PAGE.SENTIMENT') }}</strong>
-          <strong
+          <strong>{{ $t('Sentiment:') }}</strong>
+          <!-- <strong
             :class="`sentiment-${conversation.content_attributes.sentiment}`"
-          >
-            {{ conversation.content_attributes.sentiment }}
-          </strong>
+          > -->
+          {{ chat.content_attributes.sentiment }}
+          <!-- </strong> -->
         </div>
         <div class="my-2">
-          <strong>{{ $t('CONVERSATION_PAGE.LANGUAGE') }}</strong>
-          <strong
-            :class="`sentiment-${conversation.content_attributes.sentiment}`"
-          >
-            {{ chat.content_attributes.language || 'N/A' }}
-          </strong>
+          <strong>{{ $t('Language:') }}</strong>
+          <!-- <strong
+            :class="`sentiment-${conversation.content_attributes.LANGUAGE}`"
+          > -->
+          {{ chat.content_attributes.language || 'N/A' }}
+          <!-- </strong> -->
         </div>
       </div>
     </div>
@@ -230,5 +230,14 @@ export default {
   ::v-deep .inbox--name {
     @apply m-0;
   }
+}
+.sentiment-positive {
+  color: #155724; /* Green */
+}
+.sentiment-negative {
+  color: #721c24; /* Red */
+}
+.sentiment-neutral {
+  color: #856404; /* Yellow/Orange */
 }
 </style>

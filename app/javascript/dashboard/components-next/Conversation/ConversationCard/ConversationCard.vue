@@ -135,19 +135,19 @@ const onCardClick = e => {
       >
         <span v-if="conversation.content_attributes.sentiment">
           {{ $t('CONVERSATION_PAGE.SENTIMENT') }}
-          <strong
+          <!-- <strong
             :class="`sentiment-${conversation.content_attributes.sentiment}`"
-          >
-            {{ conversation.content_attributes.sentiment }}
-          </strong>
+          > -->
+          {{ chat.content_attributes.sentiment }}
+          <!-- </strong> -->
         </span>
         <span v-if="conversation.content_attributes.language" class="ml-2">
           {{ $t('CONVERSATION_PAGE.LANGUAGE') }}
-          <strong
+          <!-- <strong
             :class="`sentiment-${conversation.content_attributes.language}`"
-          >
-            {{ conversation.content_attributes.language }}
-          </strong>
+          > -->
+          {{ chat.content_attributes.language }}
+          <!-- </strong> -->
         </span>
       </div>
     </div>
