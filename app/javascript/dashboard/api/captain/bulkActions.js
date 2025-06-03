@@ -1,9 +1,9 @@
 import ApiClient from '../ApiClient';
 
-class CaptainBulkActionsAPI extends ApiClient {
+class AIAgentBulkActionsAPI extends ApiClient {
   constructor() {
-    super('captain/bulk_actions', { accountScoped: true });
+    super('aiAgent/bulk_actions', { accountScoped: true });
   }
 }
 
-export default new CaptainBulkActionsAPI();
+export default new AIAgentBulkActionsAPI();

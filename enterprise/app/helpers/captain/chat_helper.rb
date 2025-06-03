@@ -1,6 +1,6 @@
-module Captain::ChatHelper
+module AIAgent::ChatHelper
   def request_chat_completion
-    Rails.logger.debug { "[CAPTAIN][ChatCompletion] #{@messages}" }
+    Rails.logger.debug { "[AI_AGENT][ChatCompletion] #{@messages}" }
 
     response = @client.chat(
       parameters: {
@@ -15,7 +15,7 @@ module Captain::ChatHelper
   end
 
   def handle_response(response)
-    Rails.logger.debug { "[CAPTAIN][ChatCompletion] #{response}" }
+    Rails.logger.debug { "[AI_AGENT][ChatCompletion] #{response}" }
     message = response.dig('choices', 0, 'message')
     if message['tool_calls']
       process_tool_calls(message['tool_calls'])

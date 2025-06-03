@@ -1,7 +1,7 @@
 require 'openai'
 
-class Captain::Copilot::ChatService < Llm::BaseOpenAiService
-  include Captain::ChatHelper
+class AIAgent::Copilot::ChatService < Llm::BaseOpenAiService
+  include AIAgent::ChatHelper
 
   def initialize(assistant, config)
     super()
@@ -19,7 +19,7 @@ class Captain::Copilot::ChatService < Llm::BaseOpenAiService
   def generate_response(input)
     @messages << { role: 'user', content: input } if input.present?
     response = request_chat_completion
-    Rails.logger.info("[CAPTAIN][CopilotChatService] Incrementing response usage for #{@assistant.account.id}")
+    Rails.logger.info("[AI_AGENT][CopilotChatService] Incrementing response usage for #{@assistant.account.id}")
     @assistant.account.increment_response_usage
 
     response
@@ -28,14 +28,14 @@ class Captain::Copilot::ChatService < Llm::BaseOpenAiService
   private
 
   def register_tools
-    @tool_registry = Captain::ToolRegistryService.new(@assistant)
-    @tool_registry.register_tool(Captain::Tools::SearchDocumentationService)
+    @tool_registry = AIAgent::ToolRegistryService.new(@assistant)
+    @tool_registry.register_tool(AIAgent::Tools::SearchDocumentationService)
   end
 
   def system_message
     {
       role: 'system',
-      content: Captain::Llm::SystemPromptsService.copilot_response_generator(@assistant.config['product_name'], @language)
+      content: AIAgent::Llm::SystemPromptsService.copilot_response_generator(@assistant.config['product_name'], @language)
     }
   end
 

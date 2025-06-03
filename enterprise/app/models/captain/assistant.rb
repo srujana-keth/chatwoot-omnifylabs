@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: captain_assistants
+# Table name: aiAgent_assistants
 #
 #  id          :bigint           not null, primary key
 #  config      :jsonb            not null
@@ -12,22 +12,22 @@
 #
 # Indexes
 #
-#  index_captain_assistants_on_account_id  (account_id)
+#  index_aiAgent_assistants_on_account_id  (account_id)
 #
-class Captain::Assistant < ApplicationRecord
+class AIAgent::Assistant < ApplicationRecord
   include Avatarable
 
-  self.table_name = 'captain_assistants'
+  self.table_name = 'aiAgent_assistants'
 
   belongs_to :account
-  has_many :documents, class_name: 'Captain::Document', dependent: :destroy_async
-  has_many :responses, class_name: 'Captain::AssistantResponse', dependent: :destroy_async
-  has_many :captain_inboxes,
-           class_name: 'CaptainInbox',
-           foreign_key: :captain_assistant_id,
+  has_many :documents, class_name: 'AIAgent::Document', dependent: :destroy_async
+  has_many :responses, class_name: 'AIAgent::AssistantResponse', dependent: :destroy_async
+  has_many :aiAgent_inboxes,
+           class_name: 'AIAgentInbox',
+           foreign_key: :aiAgent_assistant_id,
            dependent: :destroy_async
   has_many :inboxes,
-           through: :captain_inboxes
+           through: :aiAgent_inboxes
   has_many :messages, as: :sender, dependent: :nullify
 
   validates :name, presence: true
@@ -49,7 +49,7 @@ class Captain::Assistant < ApplicationRecord
       avatar_url: avatar_url.presence || default_avatar_url,
       description: description,
       created_at: created_at,
-      type: 'captain_assistant'
+      type: 'aiAgent_assistant'
     }
   end
 
@@ -60,13 +60,13 @@ class Captain::Assistant < ApplicationRecord
       avatar_url: avatar_url.presence || default_avatar_url,
       description: description,
       created_at: created_at,
-      type: 'captain_assistant'
+      type: 'aiAgent_assistant'
     }
   end
 
   private
 
   def default_avatar_url
-    "#{ENV.fetch('FRONTEND_URL', nil)}/assets/images/dashboard/captain/logo.svg"
+    "#{ENV.fetch('FRONTEND_URL', nil)}/assets/images/dashboard/aiAgent/logo.svg"
   end
 end

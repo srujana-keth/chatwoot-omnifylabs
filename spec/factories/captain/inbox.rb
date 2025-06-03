@@ -1,6 +1,6 @@
 FactoryBot.define do
-  factory :captain_inbox, class: 'CaptainInbox' do
-    association :captain_assistant, factory: :captain_assistant
+  factory :aiAgent_inbox, class: 'AIAgentInbox' do
+    association :aiAgent_assistant, factory: :aiAgent_assistant
     association :inbox
   end
 end

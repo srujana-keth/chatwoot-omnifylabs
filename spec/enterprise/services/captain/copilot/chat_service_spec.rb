@@ -1,16 +1,16 @@
 require 'rails_helper'
 
-RSpec.describe Captain::Copilot::ChatService do
+RSpec.describe AIAgent::Copilot::ChatService do
   let(:account) { create(:account, custom_attributes: { plan_name: 'startups' }) }
-  let(:captain_inbox_association) { create(:captain_inbox, captain_assistant: assistant, inbox: inbox) }
-  let(:mock_captain_agent) { instance_double(Captain::Agent) }
-  let(:mock_captain_tool) { instance_double(Captain::Tool) }
+  let(:aiAgent_inbox_association) { create(:aiAgent_inbox, aiAgent_assistant: assistant, inbox: inbox) }
+  let(:mock_aiAgent_agent) { instance_double(AIAgent::Agent) }
+  let(:mock_aiAgent_tool) { instance_double(AIAgent::Tool) }
   let(:mock_openai_client) { instance_double(OpenAI::Client) }
   let(:inbox) { create(:inbox, account: account) }
-  let(:assistant) { create(:captain_assistant, account: account) }
+  let(:assistant) { create(:aiAgent_assistant, account: account) }
 
   before do
-    create(:installation_config, name: 'CAPTAIN_OPEN_AI_API_KEY', value: 'test-key')
+    create(:installation_config, name: 'AI_AGENT_OPEN_AI_API_KEY', value: 'test-key')
   end
 
   describe '#initialize' do
@@ -34,12 +34,12 @@ RSpec.describe Captain::Copilot::ChatService do
       allow(OpenAI::Client).to receive(:new).and_return(mock_openai_client)
       allow(mock_openai_client).to receive(:chat).and_return({ choices: [{ message: { content: '{ "result": "Hey" }' } }] }.with_indifferent_access)
 
-      allow(Captain::Agent).to receive(:new).and_return(mock_captain_agent)
-      allow(mock_captain_agent).to receive(:execute).and_return(true)
-      allow(mock_captain_agent).to receive(:register_tool).and_return(true)
+      allow(AIAgent::Agent).to receive(:new).and_return(mock_aiAgent_agent)
+      allow(mock_aiAgent_agent).to receive(:execute).and_return(true)
+      allow(mock_aiAgent_agent).to receive(:register_tool).and_return(true)
 
-      allow(Captain::Tool).to receive(:new).and_return(mock_captain_tool)
-      allow(mock_captain_tool).to receive(:register_method).and_return(true)
+      allow(AIAgent::Tool).to receive(:new).and_return(mock_aiAgent_tool)
+      allow(mock_aiAgent_tool).to receive(:register_method).and_return(true)
 
       allow(account).to receive(:increment_response_usage).and_return(true)
     end
@@ -56,7 +56,7 @@ RSpec.describe Captain::Copilot::ChatService do
                                       language: 'spanish'
                                     })
 
-      allow(Captain::Llm::SystemPromptsService).to receive(:copilot_response_generator)
+      allow(AIAgent::Llm::SystemPromptsService).to receive(:copilot_response_generator)
         .with(assistant.config['product_name'], 'spanish')
         .and_return('Spanish system prompt')
 
@@ -70,12 +70,12 @@ RSpec.describe Captain::Copilot::ChatService do
       allow(OpenAI::Client).to receive(:new).and_return(mock_openai_client)
       allow(mock_openai_client).to receive(:chat).and_return({ choices: [{ message: { content: '{ "result": "Hey" }' } }] }.with_indifferent_access)
 
-      allow(Captain::Agent).to receive(:new).and_return(mock_captain_agent)
-      allow(mock_captain_agent).to receive(:execute).and_return(true)
-      allow(mock_captain_agent).to receive(:register_tool).and_return(true)
+      allow(AIAgent::Agent).to receive(:new).and_return(mock_aiAgent_agent)
+      allow(mock_aiAgent_agent).to receive(:execute).and_return(true)
+      allow(mock_aiAgent_agent).to receive(:register_tool).and_return(true)
 
-      allow(Captain::Tool).to receive(:new).and_return(mock_captain_tool)
-      allow(mock_captain_tool).to receive(:register_method).and_return(true)
+      allow(AIAgent::Tool).to receive(:new).and_return(mock_aiAgent_tool)
+      allow(mock_aiAgent_tool).to receive(:register_method).and_return(true)
 
       allow(account).to receive(:increment_response_usage).and_return(true)
     end

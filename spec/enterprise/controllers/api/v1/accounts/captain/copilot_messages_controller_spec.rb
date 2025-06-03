@@ -1,15 +1,15 @@
 require 'rails_helper'
 
-RSpec.describe 'Api::V1::Accounts::Captain::CopilotMessagesController', type: :request do
+RSpec.describe 'Api::V1::Accounts::AIAgent::CopilotMessagesController', type: :request do
   let(:account) { create(:account) }
   let(:user) { create(:user, account: account, role: :administrator) }
-  let(:copilot_thread) { create(:captain_copilot_thread, account: account, user: user) }
-  let!(:copilot_message) { create(:captain_copilot_message, copilot_thread: copilot_thread, user: user, account: account) }
+  let(:copilot_thread) { create(:aiAgent_copilot_thread, account: account, user: user) }
+  let!(:copilot_message) { create(:aiAgent_copilot_message, copilot_thread: copilot_thread, user: user, account: account) }
 
-  describe 'GET /api/v1/accounts/{account.id}/captain/copilot_threads/{thread.uuid}/copilot_messages' do
+  describe 'GET /api/v1/accounts/{account.id}/aiAgent/copilot_threads/{thread.uuid}/copilot_messages' do
     context 'when it is an authenticated user' do
       it 'returns all messages' do
-        get "/api/v1/accounts/#{account.id}/captain/copilot_threads/#{copilot_thread.uuid}/copilot_messages",
+        get "/api/v1/accounts/#{account.id}/aiAgent/copilot_threads/#{copilot_thread.uuid}/copilot_messages",
             headers: user.create_new_auth_token,
             as: :json
 
@@ -22,7 +22,7 @@ RSpec.describe 'Api::V1::Accounts::Captain::CopilotMessagesController', type: :r
 
     context 'when thread uuid is invalid' do
       it 'returns not found error' do
-        get "/api/v1/accounts/#{account.id}/captain/copilot_threads/invalid-uuid/copilot_messages",
+        get "/api/v1/accounts/#{account.id}/aiAgent/copilot_threads/invalid-uuid/copilot_messages",
             headers: user.create_new_auth_token,
             as: :json
 

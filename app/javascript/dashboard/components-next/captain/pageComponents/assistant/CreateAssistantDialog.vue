@@ -26,17 +26,17 @@ const dialogRef = ref(null);
 const assistantForm = ref(null);
 
 const updateAssistant = assistantDetails =>
-  store.dispatch('captainAssistants/update', {
+  store.dispatch('aiAgentAssistants/update', {
     id: props.selectedAssistant.id,
     ...assistantDetails,
   });
 
 const i18nKey = computed(
-  () => `CAPTAIN.ASSISTANTS.${props.type.toUpperCase()}`
+  () => `AI_AGENT.ASSISTANTS.${props.type.toUpperCase()}`
 );
 
 const createAssistant = assistantDetails =>
-  store.dispatch('captainAssistants/create', assistantDetails);
+  store.dispatch('aiAgentAssistants/create', assistantDetails);
 
 const handleSubmit = async updatedAssistant => {
   try {
@@ -69,7 +69,7 @@ defineExpose({ dialogRef });
     ref="dialogRef"
     type="edit"
     :title="t(`${i18nKey}.TITLE`)"
-    :description="t('CAPTAIN.ASSISTANTS.FORM_DESCRIPTION')"
+    :description="t('AI_AGENT.ASSISTANTS.FORM_DESCRIPTION')"
     :show-cancel-button="false"
     :show-confirm-button="false"
     overflow-y-auto

@@ -18,12 +18,12 @@ const primaryMenuItems = accountId => [
     toStateName: 'home',
   },
   {
-    icon: 'captain',
-    key: 'captain',
-    label: 'CAPTAIN',
-    featureFlag: FEATURE_FLAGS.CAPTAIN,
-    toState: frontendURL(`accounts/${accountId}/captain/documents`),
-    toStateName: 'captain',
+    icon: 'aiAgent',
+    key: 'aiAgent',
+    label: 'AI_AGENT',
+    featureFlag: FEATURE_FLAGS.AI_AGENT,
+    toState: frontendURL(`accounts/${accountId}/aiAgent/documents`),
+    toStateName: 'aiAgent',
   },
   {
     icon: 'book-contacts',

@@ -1,11 +1,11 @@
 <script setup>
 import AssistantCard from './AssistantCard.vue';
-import { assistantsList } from 'dashboard/components-next/captain/pageComponents/emptyStates/captainEmptyStateContent.js';
+import { assistantsList } from 'dashboard/components-next/aiAgent/pageComponents/emptyStates/aiAgentEmptyStateContent.js';
 </script>
 
 <template>
   <Story
-    title="Captain/Assistant/AssistantCard"
+    title="AIAgent/Assistant/AssistantCard"
     :layout="{ type: 'grid', width: '700px' }"
   >
     <Variant title="Assistant Card">

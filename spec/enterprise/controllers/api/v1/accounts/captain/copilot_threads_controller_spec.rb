@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Api::V1::Accounts::Captain::CopilotThreads', type: :request do
+RSpec.describe 'Api::V1::Accounts::AIAgent::CopilotThreads', type: :request do
   let(:account) { create(:account) }
   let(:admin) { create(:user, account: account, role: :administrator) }
   let(:agent) { create(:user, account: account, role: :agent) }
@@ -9,10 +9,10 @@ RSpec.describe 'Api::V1::Accounts::Captain::CopilotThreads', type: :request do
     JSON.parse(response.body, symbolize_names: true)
   end
 
-  describe 'GET /api/v1/accounts/{account.id}/captain/copilot_threads' do
+  describe 'GET /api/v1/accounts/{account.id}/aiAgent/copilot_threads' do
     context 'when it is an un-authenticated user' do
       it 'does not fetch copilot threads' do
-        get "/api/v1/accounts/#{account.id}/captain/copilot_threads",
+        get "/api/v1/accounts/#{account.id}/aiAgent/copilot_threads",
             as: :json
         expect(response).to have_http_status(:unauthorized)
       end
@@ -21,11 +21,11 @@ RSpec.describe 'Api::V1::Accounts::Captain::CopilotThreads', type: :request do
     context 'when it is an agent' do
       it 'fetches copilot threads for the current user' do
         # Create threads for the current agent
-        create_list(:captain_copilot_thread, 3, account: account, user: agent)
+        create_list(:aiAgent_copilot_thread, 3, account: account, user: agent)
         # Create threads for another user (should not be included)
-        create_list(:captain_copilot_thread, 2, account: account, user: admin)
+        create_list(:aiAgent_copilot_thread, 2, account: account, user: admin)
 
-        get "/api/v1/accounts/#{account.id}/captain/copilot_threads",
+        get "/api/v1/accounts/#{account.id}/aiAgent/copilot_threads",
             headers: agent.create_new_auth_token,
             as: :json
 
@@ -36,9 +36,9 @@ RSpec.describe 'Api::V1::Accounts::Captain::CopilotThreads', type: :request do
       end
 
       it 'returns threads in descending order of creation' do
-        threads = create_list(:captain_copilot_thread, 3, account: account, user: agent)
+        threads = create_list(:aiAgent_copilot_thread, 3, account: account, user: agent)
 
-        get "/api/v1/accounts/#{account.id}/captain/copilot_threads",
+        get "/api/v1/accounts/#{account.id}/aiAgent/copilot_threads",
             headers: agent.create_new_auth_token,
             as: :json
 

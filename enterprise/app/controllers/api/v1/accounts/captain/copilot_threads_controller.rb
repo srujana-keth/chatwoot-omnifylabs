@@ -1,6 +1,6 @@
-class Api::V1::Accounts::Captain::CopilotThreadsController < Api::V1::Accounts::BaseController
+class Api::V1::Accounts::AIAgent::CopilotThreadsController < Api::V1::Accounts::BaseController
   before_action :current_account
-  before_action -> { check_authorization(Captain::Assistant) }
+  before_action -> { check_authorization(AIAgent::Assistant) }
 
   def index
     @copilot_threads = Current.account.copilot_threads

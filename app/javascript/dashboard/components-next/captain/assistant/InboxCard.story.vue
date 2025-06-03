@@ -1,11 +1,11 @@
 <script setup>
 import InboxCard from './InboxCard.vue';
-import { inboxes } from 'dashboard/components-next/captain/pageComponents/emptyStates/captainEmptyStateContent.js';
+import { inboxes } from 'dashboard/components-next/aiAgent/pageComponents/emptyStates/aiAgentEmptyStateContent.js';
 </script>
 
 <template>
   <Story
-    title="Captain/Assistant/InboxCard"
+    title="AIAgent/Assistant/InboxCard"
     :layout="{ type: 'grid', width: '700px' }"
   >
     <Variant title="Inbox Card">
