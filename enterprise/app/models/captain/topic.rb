@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: aiAgent_assistants
+# Table name: aiAgent_topics
 #
 #  id          :bigint           not null, primary key
 #  config      :jsonb            not null
@@ -12,19 +12,19 @@
 #
 # Indexes
 #
-#  index_aiAgent_assistants_on_account_id  (account_id)
+#  index_aiAgent_topics_on_account_id  (account_id)
 #
-class AIAgent::Assistant < ApplicationRecord
+class AIAgent::Topic < ApplicationRecord
   include Avatarable
 
-  self.table_name = 'aiAgent_assistants'
+  self.table_name = 'aiAgent_topics'
 
   belongs_to :account
   has_many :documents, class_name: 'AIAgent::Document', dependent: :destroy_async
-  has_many :responses, class_name: 'AIAgent::AssistantResponse', dependent: :destroy_async
+  has_many :responses, class_name: 'AIAgent::TopicResponse', dependent: :destroy_async
   has_many :aiAgent_inboxes,
            class_name: 'AIAgentInbox',
-           foreign_key: :aiAgent_assistant_id,
+           foreign_key: :aiAgent_topic_id,
            dependent: :destroy_async
   has_many :inboxes,
            through: :aiAgent_inboxes
@@ -49,7 +49,7 @@ class AIAgent::Assistant < ApplicationRecord
       avatar_url: avatar_url.presence || default_avatar_url,
       description: description,
       created_at: created_at,
-      type: 'aiAgent_assistant'
+      type: 'aiAgent_topic'
     }
   end
 
@@ -60,7 +60,7 @@ class AIAgent::Assistant < ApplicationRecord
       avatar_url: avatar_url.presence || default_avatar_url,
       description: description,
       created_at: created_at,
-      type: 'aiAgent_assistant'
+      type: 'aiAgent_topic'
     }
   end
 

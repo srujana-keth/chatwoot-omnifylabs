@@ -6,12 +6,12 @@ module Enterprise::MessageTemplates::HookExecutionService
 
     AIAgent::Conversation::ResponseBuilderJob.perform_later(
       conversation,
-      conversation.inbox.aiAgent_assistant
+      conversation.inbox.aiAgent_topic
     )
   end
 
   def should_process_aiAgent_response?
-    conversation.pending? && message.incoming? && inbox.aiAgent_assistant.present?
+    conversation.pending? && message.incoming? && inbox.aiAgent_topic.present?
   end
 
   def perform_handoff

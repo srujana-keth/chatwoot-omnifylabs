@@ -5,7 +5,7 @@ import { inboxes } from 'dashboard/components-next/aiAgent/pageComponents/emptyS
 
 <template>
   <Story
-    title="AIAgent/Assistant/InboxCard"
+    title="AIAgent/Topic/InboxCard"
     :layout="{ type: 'grid', width: '700px' }"
   >
     <Variant title="Inbox Card">

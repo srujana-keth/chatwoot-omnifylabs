@@ -1,6 +1,6 @@
 json.account_id resource.account_id
-json.assistant do
-  json.partial! 'api/v1/models/aiAgent/assistant', formats: [:json], resource: resource.assistant
+json.topic do
+  json.partial! 'api/v1/models/aiAgent/topic', formats: [:json], resource: resource.topic
 end
 json.content resource.content
 json.created_at resource.created_at.to_i

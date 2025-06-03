@@ -1,7 +1,7 @@
 <script setup>
 import EmptyStateLayout from 'dashboard/components-next/EmptyStateLayout.vue';
 import Button from 'dashboard/components-next/button/Button.vue';
-import ResponseCard from 'dashboard/components-next/aiAgent/assistant/ResponseCard.vue';
+import ResponseCard from 'dashboard/components-next/aiAgent/topic/ResponseCard.vue';
 import FeatureSpotlight from 'dashboard/components-next/feature-spotlight/FeatureSpotlight.vue';
 import { responsesList } from 'dashboard/components-next/aiAgent/pageComponents/emptyStates/aiAgentEmptyStateContent.js';
 
@@ -35,7 +35,7 @@ const onClick = () => {
           :question="response.question"
           :answer="response.answer"
           :status="response.status"
-          :assistant="response.assistant"
+          :topic="response.topic"
           :created-at="response.created_at"
           :updated-at="response.created_at"
         />

@@ -38,8 +38,8 @@ class TestTool < AIAgent::Tools::BaseService
 end
 
 RSpec.describe AIAgent::ToolRegistryService do
-  let(:assistant) { create(:aiAgent_assistant) }
-  let(:service) { described_class.new(assistant) }
+  let(:topic) { create(:aiAgent_topic) }
+  let(:service) { described_class.new(topic) }
 
   describe '#initialize' do
     it 'initializes with empty tools and registered_tools' do
@@ -77,7 +77,7 @@ RSpec.describe AIAgent::ToolRegistryService do
 
     context 'when tool is inactive' do
       it 'does not register the tool' do
-        tool = tool_class.new(assistant)
+        tool = tool_class.new(topic)
         tool.tool_active = false
         allow(tool_class).to receive(:new).and_return(tool)
 

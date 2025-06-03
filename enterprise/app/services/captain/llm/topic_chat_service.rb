@@ -1,12 +1,12 @@
 require 'openai'
 
-class AIAgent::Llm::AssistantChatService < Llm::BaseOpenAiService
+class AIAgent::Llm::TopicChatService < Llm::BaseOpenAiService
   include AIAgent::ChatHelper
 
-  def initialize(assistant: nil)
+  def initialize(topic: nil)
     super()
 
-    @assistant = assistant
+    @topic = topic
     @messages = [system_message]
     @response = ''
     register_tools
@@ -21,14 +21,14 @@ class AIAgent::Llm::AssistantChatService < Llm::BaseOpenAiService
   private
 
   def register_tools
-    @tool_registry = AIAgent::ToolRegistryService.new(@assistant)
+    @tool_registry = AIAgent::ToolRegistryService.new(@topic)
     @tool_registry.register_tool(AIAgent::Tools::SearchDocumentationService)
   end
 
   def system_message
     {
       role: 'system',
-      content: AIAgent::Llm::SystemPromptsService.assistant_response_generator(@assistant.name, @assistant.config['product_name'], @assistant.config)
+      content: AIAgent::Llm::SystemPromptsService.topic_response_generator(@topic.name, @topic.config['product_name'], @topic.config)
     }
   end
 end

@@ -3,10 +3,10 @@ require 'openai'
 class AIAgent::Copilot::ChatService < Llm::BaseOpenAiService
   include AIAgent::ChatHelper
 
-  def initialize(assistant, config)
+  def initialize(topic, config)
     super()
 
-    @assistant = assistant
+    @topic = topic
     @conversation_history = config[:conversation_history]
     @previous_messages = config[:previous_messages] || []
     @language = config[:language] || 'english'
@@ -19,8 +19,8 @@ class AIAgent::Copilot::ChatService < Llm::BaseOpenAiService
   def generate_response(input)
     @messages << { role: 'user', content: input } if input.present?
     response = request_chat_completion
-    Rails.logger.info("[AI_AGENT][CopilotChatService] Incrementing response usage for #{@assistant.account.id}")
-    @assistant.account.increment_response_usage
+    Rails.logger.info("[AI_AGENT][CopilotChatService] Incrementing response usage for #{@topic.account.id}")
+    @topic.account.increment_response_usage
 
     response
   end
@@ -28,14 +28,14 @@ class AIAgent::Copilot::ChatService < Llm::BaseOpenAiService
   private
 
   def register_tools
-    @tool_registry = AIAgent::ToolRegistryService.new(@assistant)
+    @tool_registry = AIAgent::ToolRegistryService.new(@topic)
     @tool_registry.register_tool(AIAgent::Tools::SearchDocumentationService)
   end
 
   def system_message
     {
       role: 'system',
-      content: AIAgent::Llm::SystemPromptsService.copilot_response_generator(@assistant.config['product_name'], @language)
+      content: AIAgent::Llm::SystemPromptsService.copilot_response_generator(@topic.config['product_name'], @language)
     }
   end
 

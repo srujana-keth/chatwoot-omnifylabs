@@ -1,17 +1,17 @@
 import { FEATURE_FLAGS } from 'dashboard/featureFlags';
 import { INSTALLATION_TYPES } from 'dashboard/constants/installationTypes';
 import { frontendURL } from '../../../helper/URLHelper';
-import AssistantIndex from './assistants/Index.vue';
-import AssistantEdit from './assistants/Edit.vue';
-import AssistantInboxesIndex from './assistants/inboxes/Index.vue';
+import TopicIndex from './topics/Index.vue';
+import TopicEdit from './topics/Edit.vue';
+import TopicInboxesIndex from './topics/inboxes/Index.vue';
 import DocumentsIndex from './documents/Index.vue';
 import ResponsesIndex from './responses/Index.vue';
 
 export const routes = [
   {
-    path: frontendURL('accounts/:accountId/aiAgent/assistants'),
-    component: AssistantIndex,
-    name: 'aiAgent_assistants_index',
+    path: frontendURL('accounts/:accountId/aiAgent/topics'),
+    component: TopicIndex,
+    name: 'aiAgent_topics_index',
     meta: {
       permissions: ['administrator', 'agent'],
       featureFlag: FEATURE_FLAGS.AI_AGENT,
@@ -22,9 +22,9 @@ export const routes = [
     },
   },
   {
-    path: frontendURL('accounts/:accountId/aiAgent/assistants/:assistantId'),
-    component: AssistantEdit,
-    name: 'aiAgent_assistants_edit',
+    path: frontendURL('accounts/:accountId/aiAgent/topics/:topicId'),
+    component: TopicEdit,
+    name: 'aiAgent_topics_edit',
     meta: {
       permissions: ['administrator', 'agent'],
       featureFlag: FEATURE_FLAGS.AI_AGENT,
@@ -35,11 +35,9 @@ export const routes = [
     },
   },
   {
-    path: frontendURL(
-      'accounts/:accountId/aiAgent/assistants/:assistantId/inboxes'
-    ),
-    component: AssistantInboxesIndex,
-    name: 'aiAgent_assistants_inboxes_index',
+    path: frontendURL('accounts/:accountId/aiAgent/topics/:topicId/inboxes'),
+    component: TopicInboxesIndex,
+    name: 'aiAgent_topics_inboxes_index',
     meta: {
       permissions: ['administrator', 'agent'],
       featureFlag: FEATURE_FLAGS.AI_AGENT,

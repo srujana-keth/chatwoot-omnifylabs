@@ -36,7 +36,7 @@ RSpec.describe Account, type: :model do
       }.with_indifferent_access
     end
     let(:account) { create(:account, { custom_attributes: { plan_name: 'startups' } }) }
-    let(:assistant) { create(:aiAgent_assistant, account: account) }
+    let(:topic) { create(:aiAgent_topic, account: account) }
 
     before do
       create(:installation_config, name: 'ACCOUNT_AGENTS_LIMIT', value: 20)
@@ -44,7 +44,7 @@ RSpec.describe Account, type: :model do
 
     describe 'when aiAgent limits are configured' do
       before do
-        create_list(:aiAgent_document, 3, account: account, assistant: assistant, status: :available)
+        create_list(:aiAgent_document, 3, account: account, topic: topic, status: :available)
         create(:installation_config, name: 'AI_AGENT_CLOUD_PLAN_LIMITS', value: aiAgent_limits.to_json)
       end
 

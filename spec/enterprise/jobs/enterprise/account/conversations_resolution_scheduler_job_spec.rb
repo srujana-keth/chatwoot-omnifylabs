@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Account::ConversationsResolutionSchedulerJob, type: :job do
   let(:account) { create(:account) }
-  let(:assistant) { create(:aiAgent_assistant, account: account) }
+  let(:topic) { create(:aiAgent_topic, account: account) }
 
   describe '#perform - aiAgent resolutions' do
     context 'when handling different inbox types' do
@@ -10,8 +10,8 @@ RSpec.describe Account::ConversationsResolutionSchedulerJob, type: :job do
       let!(:email_inbox) { create(:inbox, :with_email, account: account) }
 
       before do
-        create(:aiAgent_inbox, aiAgent_assistant: assistant, inbox: regular_inbox)
-        create(:aiAgent_inbox, aiAgent_assistant: assistant, inbox: email_inbox)
+        create(:aiAgent_inbox, aiAgent_topic: topic, inbox: regular_inbox)
+        create(:aiAgent_inbox, aiAgent_topic: topic, inbox: email_inbox)
       end
 
       it 'enqueues resolution jobs only for non-email inboxes with aiAgent enabled' do

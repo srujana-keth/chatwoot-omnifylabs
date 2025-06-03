@@ -6,64 +6,60 @@ import { useMapGetter } from 'dashboard/composables/store';
 import { useAlert } from 'dashboard/composables';
 import { useI18n } from 'vue-i18n';
 import PageLayout from 'dashboard/components-next/aiAgent/PageLayout.vue';
-import EditAssistantForm from '../../../../components-next/aiAgent/pageComponents/assistant/EditAssistantForm.vue';
-import AssistantPlayground from 'dashboard/components-next/aiAgent/assistant/AssistantPlayground.vue';
+import EditTopicForm from '../../../../components-next/aiAgent/pageComponents/topic/EditTopicForm.vue';
+import TopicPlayground from 'dashboard/components-next/aiAgent/topic/TopicPlayground.vue';
 
 const route = useRoute();
 const store = useStore();
 const { t } = useI18n();
-const assistantId = route.params.assistantId;
-const uiFlags = useMapGetter('aiAgentAssistants/getUIFlags');
+const topicId = route.params.topicId;
+const uiFlags = useMapGetter('aiAgentTopics/getUIFlags');
 const isFetching = computed(() => uiFlags.value.fetchingItem);
-const assistant = computed(() =>
-  store.getters['aiAgentAssistants/getRecord'](Number(assistantId))
+const topic = computed(() =>
+  store.getters['aiAgentTopics/getRecord'](Number(topicId))
 );
 
-const isAssistantAvailable = computed(() => !!assistant.value?.id);
+const isTopicAvailable = computed(() => !!topic.value?.id);
 
-const handleSubmit = async updatedAssistant => {
+const handleSubmit = async updatedTopic => {
   try {
-    await store.dispatch('aiAgentAssistants/update', {
-      id: assistantId,
-      ...updatedAssistant,
+    await store.dispatch('aiAgentTopics/update', {
+      id: topicId,
+      ...updatedTopic,
     });
-    useAlert(t('AI_AGENT.ASSISTANTS.EDIT.SUCCESS_MESSAGE'));
+    useAlert(t('AI_AGENT.TOPICS.EDIT.SUCCESS_MESSAGE'));
   } catch (error) {
     const errorMessage =
-      error?.message || t('AI_AGENT.ASSISTANTS.EDIT.ERROR_MESSAGE');
+      error?.message || t('AI_AGENT.TOPICS.EDIT.ERROR_MESSAGE');
     useAlert(errorMessage);
   }
 };
 
 onMounted(() => {
-  if (!isAssistantAvailable.value) {
-    store.dispatch('aiAgentAssistants/show', assistantId);
+  if (!isTopicAvailable.value) {
+    store.dispatch('aiAgentTopics/show', topicId);
   }
 });
 </script>
 
 <template>
   <PageLayout
-    :header-title="assistant?.name"
+    :header-title="topic?.name"
     :show-pagination-footer="false"
     :is-fetching="isFetching"
     :show-know-more="false"
-    :back-url="{ name: 'aiAgent_assistants_index' }"
+    :back-url="{ name: 'aiAgent_topics_index' }"
   >
     <template #body>
-      <div v-if="!isAssistantAvailable">
-        {{ t('AI_AGENT.ASSISTANTS.EDIT.NOT_FOUND') }}
+      <div v-if="!isTopicAvailable">
+        {{ t('AI_AGENT.TOPICS.EDIT.NOT_FOUND') }}
       </div>
       <div v-else class="flex gap-4 h-full">
         <div class="flex-1 lg:overflow-auto pr-4 h-full md:h-auto">
-          <EditAssistantForm
-            :assistant="assistant"
-            mode="edit"
-            @submit="handleSubmit"
-          />
+          <EditTopicForm :topic="topic" mode="edit" @submit="handleSubmit" />
         </div>
         <div class="w-[400px] hidden lg:block h-full">
-          <AssistantPlayground :assistant-id="Number(assistantId)" />
+          <TopicPlayground :topic-id="Number(topicId)" />
         </div>
       </div>
     </template>

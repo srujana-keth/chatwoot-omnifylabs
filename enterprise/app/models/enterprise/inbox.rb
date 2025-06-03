@@ -10,7 +10,7 @@ module Enterprise::Inbox
   end
 
   def aiAgent_active?
-    aiAgent_assistant.present? && more_responses?
+    aiAgent_topic.present? && more_responses?
   end
 
   private

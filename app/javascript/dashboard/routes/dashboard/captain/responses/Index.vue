@@ -14,8 +14,8 @@ import DeleteDialog from 'dashboard/components-next/aiAgent/pageComponents/Delet
 import BulkDeleteDialog from 'dashboard/components-next/aiAgent/pageComponents/BulkDeleteDialog.vue';
 import PageLayout from 'dashboard/components-next/aiAgent/PageLayout.vue';
 import AIAgentPaywall from 'dashboard/components-next/aiAgent/pageComponents/Paywall.vue';
-import AssistantSelector from 'dashboard/components-next/aiAgent/pageComponents/AssistantSelector.vue';
-import ResponseCard from 'dashboard/components-next/aiAgent/assistant/ResponseCard.vue';
+import TopicSelector from 'dashboard/components-next/aiAgent/pageComponents/TopicSelector.vue';
+import ResponseCard from 'dashboard/components-next/aiAgent/topic/ResponseCard.vue';
 import CreateResponseDialog from 'dashboard/components-next/aiAgent/pageComponents/response/CreateResponseDialog.vue';
 import ResponsePageEmptyState from 'dashboard/components-next/aiAgent/pageComponents/emptyStates/ResponsePageEmptyState.vue';
 import FeatureSpotlightPopover from 'dashboard/components-next/feature-spotlight/FeatureSpotlightPopover.vue';
@@ -24,7 +24,7 @@ import LimitBanner from 'dashboard/components-next/aiAgent/pageComponents/respon
 const router = useRouter();
 const store = useStore();
 const uiFlags = useMapGetter('aiAgentResponses/getUIFlags');
-const assistants = useMapGetter('aiAgentAssistants/getRecords');
+const topics = useMapGetter('aiAgentTopics/getRecords');
 const responseMeta = useMapGetter('aiAgentResponses/getMeta');
 const responses = useMapGetter('aiAgentResponses/getRecords');
 const isFetching = computed(() => uiFlags.value.fetchingList);
@@ -34,7 +34,7 @@ const deleteDialog = ref(null);
 const bulkDeleteDialog = ref(null);
 
 const selectedStatus = ref('all');
-const selectedAssistant = ref('all');
+const selectedTopic = ref('all');
 const dialogType = ref('');
 const { t } = useI18n();
 
@@ -42,7 +42,7 @@ const createDialog = ref(null);
 
 const isStatusFilterOpen = ref(false);
 const shouldShowDropdown = computed(() => {
-  if (assistants.value.length === 0) return false;
+  if (topics.value.length === 0) return false;
 
   return !isFetching.value;
 });
@@ -127,8 +127,8 @@ const fetchResponses = (page = 1) => {
   if (selectedStatus.value !== 'all') {
     filterParams.status = selectedStatus.value;
   }
-  if (selectedAssistant.value !== 'all') {
-    filterParams.assistantId = selectedAssistant.value;
+  if (selectedTopic.value !== 'all') {
+    filterParams.topicId = selectedTopic.value;
   }
   store.dispatch('aiAgentResponses/get', filterParams);
 };
@@ -223,13 +223,13 @@ const handleStatusFilterChange = ({ value }) => {
   fetchResponses();
 };
 
-const handleAssistantFilterChange = assistant => {
-  selectedAssistant.value = assistant;
+const handleTopicFilterChange = topic => {
+  selectedTopic.value = topic;
   fetchResponses();
 };
 
 onMounted(() => {
-  store.dispatch('aiAgentAssistants/get');
+  store.dispatch('aiAgentTopics/get');
   fetchResponses();
 });
 </script>
@@ -291,9 +291,9 @@ onMounted(() => {
               @action="handleStatusFilterChange"
             />
           </OnClickOutside>
-          <AssistantSelector
-            :assistant-id="selectedAssistant"
-            @update="handleAssistantFilterChange"
+          <TopicSelector
+            :topic-id="selectedTopic"
+            @update="handleTopicFilterChange"
           />
         </div>
 
@@ -351,7 +351,7 @@ onMounted(() => {
           :key="response.id"
           :question="response.question"
           :answer="response.answer"
-          :assistant="response.assistant"
+          :topic="response.topic"
           :documentable="response.documentable"
           :status="response.status"
           :created-at="response.created_at"

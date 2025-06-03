@@ -1,1 +1,1 @@
-json.partial! 'api/v1/models/aiAgent/assistant_response', formats: [:json], resource: @response
+json.partial! 'api/v1/models/aiAgent/topic_response', formats: [:json], resource: @response

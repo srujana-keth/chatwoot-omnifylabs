@@ -1,6 +1,6 @@
 FactoryBot.define do
-  factory :aiAgent_assistant_response, class: 'AIAgent::AssistantResponse' do
-    association :assistant, factory: :aiAgent_assistant
+  factory :aiAgent_topic_response, class: 'AIAgent::TopicResponse' do
+    association :topic, factory: :aiAgent_topic
     association :account
     sequence(:question) { |n| "Test question #{n}?" }
     sequence(:answer) { |n| "Test answer #{n}" }
