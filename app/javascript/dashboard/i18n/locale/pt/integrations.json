@@ -327,12 +327,12 @@
     }
   },
   "AI_AGENT": {
-    "NAME": "AIAgent",
+    "NAME": "AiAgent",
     "HEADER_KNOW_MORE": "Know more",
     "COPILOT": {
       "SEND_MESSAGE": "Enviar mensagem...",
       "EMPTY_MESSAGE": "There was an error generating the response. Please try again.",
-      "LOADER": "AIAgent is thinking",
+      "LOADER": "AiAgent is thinking",
       "YOU": "Você",
       "USE": "Use this",
       "RESET": "Reset",
@@ -358,23 +358,23 @@
       "MESSAGE_PLACEHOLDER": "Escreva a sua mensagem...",
       "HEADER": "Playground",
       "DESCRIPTION": "Use this playground to send messages to your topic and check if it responds accurately, quickly, and in the tone you expect.",
-      "CREDIT_NOTE": "Messages sent here will count toward your AIAgent credits."
+      "CREDIT_NOTE": "Messages sent here will count toward your AiAgent credits."
     },
     "PAYWALL": {
-      "TITLE": "Upgrade to use AIAgent AI",
-      "AVAILABLE_ON": "AIAgent is not available on the free plan.",
+      "TITLE": "Upgrade to use AiAgent AI",
+      "AVAILABLE_ON": "AiAgent is not available on the free plan.",
       "UPGRADE_PROMPT": "Upgrade your plan to get access to our topics, copilot and more.",
       "UPGRADE_NOW": "Fazer upgrade agora",
       "CANCEL_ANYTIME": "Pode alterar ou cancelar o plano a qualquer momento"
     },
     "ENTERPRISE_PAYWALL": {
-      "AVAILABLE_ON": "AIAgent AI feature is only available in a paid plan.",
+      "AVAILABLE_ON": "AiAgent AI feature is only available in a paid plan.",
       "UPGRADE_PROMPT": "Upgrade your plan to get access to our topics, copilot and more.",
       "ASK_ADMIN": "Por favor, entre em contato com o administrador para atualização."
     },
     "BANNER": {
-      "RESPONSES": "You've used over 80% of your response limit. To continue using AIAgent AI, please upgrade.",
-      "DOCUMENTS": "Document limit reached. Upgrade to continue using AIAgent AI."
+      "RESPONSES": "You've used over 80% of your response limit. To continue using AiAgent AI, please upgrade.",
+      "DOCUMENTS": "Document limit reached. Upgrade to continue using AiAgent AI."
     },
     "FORM": {
       "CANCEL": "Cancelar",
@@ -458,8 +458,8 @@
         "TITLE": "No topics available",
         "SUBTITLE": "Create an topic to provide quick and accurate responses to your users. It can learn from your help articles and past conversations.",
         "FEATURE_SPOTLIGHT": {
-          "TITLE": "AIAgent Topic",
-          "NOTE": "AIAgent Topic engages directly with customers, learns from your help docs and past conversations, and delivers instant, accurate responses. It handles the initial queries, providing quick resolutions before  transferring to an agent when needed."
+          "TITLE": "AiAgent Topic",
+          "NOTE": "AiAgent Topic engages directly with customers, learns from your help docs and past conversations, and delivers instant, accurate responses. It handles the initial queries, providing quick resolutions before  transferring to an agent when needed."
         }
       }
     },
@@ -503,8 +503,8 @@
         "TITLE": "No documents available",
         "SUBTITLE": "Documents are used by your topic to generate FAQs. You can import documents to provide context for your topic.",
         "FEATURE_SPOTLIGHT": {
-          "TITLE": "AIAgent Document",
-          "NOTE": "A document in AIAgent serves as a knowledge resource for the topic. By connecting your help center or guides, AIAgent can analyze the content and provide accurate responses for customer inquiries."
+          "TITLE": "AiAgent Document",
+          "NOTE": "A document in AiAgent serves as a knowledge resource for the topic. By connecting your help center or guides, AiAgent can analyze the content and provide accurate responses for customer inquiries."
         }
       }
     },
@@ -584,8 +584,8 @@
         "TITLE": "No FAQs Found",
         "SUBTITLE": "FAQs help your topic provide quick and accurate answers to questions from your customers. They can be generated automatically from your content or can be added manually.",
         "FEATURE_SPOTLIGHT": {
-          "TITLE": "AIAgent FAQ",
-          "NOTE": "AIAgent FAQs detects common customer questions—whether missing from your knowledge base or frequently asked—and generates relevant FAQs to improve support. You can review each suggestion and decide whether to approve or reject it."
+          "TITLE": "AiAgent FAQ",
+          "NOTE": "AiAgent FAQs detects common customer questions—whether missing from your knowledge base or frequently asked—and generates relevant FAQs to improve support. You can review each suggestion and decide whether to approve or reject it."
         }
       }
     },

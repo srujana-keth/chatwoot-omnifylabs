@@ -2,7 +2,7 @@
 import { computed, onMounted } from 'vue';
 import { useMapGetter, useStore } from 'dashboard/composables/store.js';
 import { useAccount } from 'dashboard/composables/useAccount';
-import { useAIAgent } from 'dashboard/composables/useAIAgent';
+import { useAiAgent } from 'dashboard/composables/useAiAgent';
 import { format } from 'date-fns';
 
 import BillingMeter from './components/BillingMeter.vue';
@@ -15,12 +15,12 @@ import ButtonV4 from 'next/button/Button.vue';
 
 const { currentAccount } = useAccount();
 const {
-  aiAgentEnabled,
-  aiAgentLimits,
+  ai_agentEnabled,
+  ai_agentLimits,
   documentLimits,
   responseLimits,
   fetchLimits,
-} = useAIAgent();
+} = useAiAgent();
 
 const uiFlags = useMapGetter('accounts/getUIFlags');
 const store = useStore();
@@ -126,7 +126,7 @@ onMounted(fetchAccountDetails);
           </div>
         </BillingCard>
         <BillingCard
-          v-if="aiAgentEnabled"
+          v-if="ai_agentEnabled"
           :title="$t('BILLING_SETTINGS.AI_AGENT.TITLE')"
           :description="$t('BILLING_SETTINGS.AI_AGENT.DESCRIPTION')"
         >
@@ -135,13 +135,13 @@ onMounted(fetchAccountDetails);
               {{ $t('BILLING_SETTINGS.AI_AGENT.BUTTON_TXT') }}
             </ButtonV4>
           </template>
-          <div v-if="aiAgentLimits && responseLimits" class="px-5">
+          <div v-if="ai_agentLimits && responseLimits" class="px-5">
             <BillingMeter
               :title="$t('BILLING_SETTINGS.AI_AGENT.RESPONSES')"
               v-bind="responseLimits"
             />
           </div>
-          <div v-if="aiAgentLimits && documentLimits" class="px-5">
+          <div v-if="ai_agentLimits && documentLimits" class="px-5">
             <BillingMeter
               :title="$t('BILLING_SETTINGS.AI_AGENT.DOCUMENTS')"
               v-bind="documentLimits"

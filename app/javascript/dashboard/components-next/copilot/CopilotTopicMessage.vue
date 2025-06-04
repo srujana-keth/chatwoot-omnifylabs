@@ -48,8 +48,8 @@ const useCopilotResponse = () => {
 <template>
   <div class="flex flex-row gap-2">
     <Avatar
-      name="AIAgent Copilot"
-      icon-name="i-woot-aiAgent"
+      name="AiAgent Copilot"
+      icon-name="i-woot-ai_agent"
       :size="24"
       rounded-full
     />

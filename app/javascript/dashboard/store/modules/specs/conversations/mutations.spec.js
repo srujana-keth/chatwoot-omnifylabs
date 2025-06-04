@@ -556,7 +556,7 @@ describe('#mutations', () => {
   });
 
   describe('#SET_INBOX_AI_AGENT_TOPIC', () => {
-    it('set inbox aiAgent topic', () => {
+    it('set inbox ai_agent topic', () => {
       const state = { copilotTopic: {} };
       const data = {
         topic: {

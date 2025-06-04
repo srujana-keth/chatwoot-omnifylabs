@@ -1,11 +1,11 @@
 # TODO: Move this values to features.yml itself
 # No need to replicate the same values in two places
-aiAgent:
-  name: 'AIAgent'
+ai_agent:
+  name: 'AiAgent'
   description: 'Enable AI-powered conversations with your customers.'
   enabled: <%= (ChatwootHub.pricing_plan != 'community') %>
-  icon: 'icon-aiAgent'
-  config_key: 'aiAgent'
+  icon: 'icon-ai_agent'
+  config_key: 'ai_agent'
   enterprise: true
 custom_branding:
   name: 'Custom Branding'

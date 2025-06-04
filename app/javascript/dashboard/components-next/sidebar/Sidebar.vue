@@ -199,24 +199,24 @@ const menuItems = computed(() => {
       ],
     },
     {
-      name: 'AIAgent',
-      icon: 'i-woot-aiAgent',
+      name: 'AiAgent',
+      icon: 'i-woot-ai_agent',
       label: t('SIDEBAR.AI_AGENT'),
       children: [
         {
           name: 'Topics',
           label: t('SIDEBAR.AI_AGENT_TOPICS'),
-          to: accountScopedRoute('aiAgent_topics_index'),
+          to: accountScopedRoute('ai_agent_topics_index'),
         },
         {
           name: 'Documents',
           label: t('SIDEBAR.AI_AGENT_DOCUMENTS'),
-          to: accountScopedRoute('aiAgent_documents_index'),
+          to: accountScopedRoute('ai_agent_documents_index'),
         },
         {
           name: 'Responses',
           label: t('SIDEBAR.AI_AGENT_RESPONSES'),
-          to: accountScopedRoute('aiAgent_responses_index'),
+          to: accountScopedRoute('ai_agent_responses_index'),
         },
       ],
     },

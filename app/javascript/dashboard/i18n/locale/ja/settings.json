@@ -360,11 +360,11 @@
     },
     "AI_AGENT": {
       "TITLE": "キャプテン",
-      "DESCRIPTION": "AIAgent AIの使用状況とクレジットを管理する。",
+      "DESCRIPTION": "AiAgent AIの使用状況とクレジットを管理する。",
       "BUTTON_TXT": "クレジットを追加購入する",
       "DOCUMENTS": "ドキュメント",
       "RESPONSES": "応答数",
-      "UPGRADE": "AIAgentは無料プランでは利用できません。アシスタント、Copilotなどの機能を利用するには、プランをアップグレードしてください。"
+      "UPGRADE": "AiAgentは無料プランでは利用できません。アシスタント、Copilotなどの機能を利用するには、プランをアップグレードしてください。"
     },
     "CHAT_WITH_US": {
       "TITLE": "サポートが必要ですか？",

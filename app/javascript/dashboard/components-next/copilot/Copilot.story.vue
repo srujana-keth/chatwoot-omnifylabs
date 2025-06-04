@@ -21,7 +21,7 @@ const messages = ref([
   },
 ]);
 
-const isAIAgentTyping = ref(false);
+const isAiAgentTyping = ref(false);
 
 const sendMessage = message => {
   // Add user message
@@ -32,9 +32,9 @@ const sendMessage = message => {
   });
 
   // Simulate AI response
-  isAIAgentTyping.value = true;
+  isAiAgentTyping.value = true;
   setTimeout(() => {
-    isAIAgentTyping.value = false;
+    isAiAgentTyping.value = false;
     messages.value.push({
       id: messages.value.length + 1,
       role: 'topic',
@@ -46,13 +46,13 @@ const sendMessage = message => {
 
 <template>
   <Story
-    title="AIAgent/Copilot"
+    title="AiAgent/Copilot"
     :layout="{ type: 'grid', width: '400px', height: '800px' }"
   >
     <Copilot
       :support-agent="supportAgent"
       :messages="messages"
-      :is-ai-agent-typing="isAIAgentTyping"
+      :is-ai-agent-typing="isAiAgentTyping"
       @send-message="sendMessage"
     />
   </Story>

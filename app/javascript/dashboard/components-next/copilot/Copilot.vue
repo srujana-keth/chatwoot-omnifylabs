@@ -20,7 +20,7 @@ const props = defineProps({
     type: Array,
     default: () => [],
   },
-  isAIAgentTyping: {
+  isAiAgentTyping: {
     type: Boolean,
     default: false,
   },
@@ -83,7 +83,7 @@ const promptOptions = [
 ];
 
 watch(
-  [() => props.messages, () => props.isAIAgentTyping],
+  [() => props.messages, () => props.isAiAgentTyping],
   () => {
     scrollToBottom();
   },
@@ -107,7 +107,7 @@ watch(
         />
       </template>
 
-      <CopilotLoader v-if="isAIAgentTyping" />
+      <CopilotLoader v-if="isAiAgentTyping" />
     </div>
 
     <div

@@ -9,7 +9,7 @@ module Enterprise::SuperAdmin::AppConfigsController
       @allowed_configs = custom_branding_options
     when 'internal'
       @allowed_configs = internal_config_options
-    when 'aiAgent'
+    when 'ai_agent'
       @allowed_configs = %w[AI_AGENT_OPEN_AI_API_KEY AI_AGENT_OPEN_AI_MODEL AI_AGENT_FIRECRAWL_API_KEY]
     else
       super

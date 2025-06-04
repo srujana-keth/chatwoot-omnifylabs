@@ -66,7 +66,7 @@ class Enterprise::Api::V1::AccountsController < Api::BaseController
       'conversation' => {},
       'non_web_inboxes' => {},
       'agents' => {},
-      'aiAgent' => @account.usage_limits[:aiAgent]
+      'ai_agent' => @account.usage_limits[:ai_agent]
     }
   end
 

@@ -360,11 +360,11 @@
     },
     "AI_AGENT": {
       "TITLE": "Kapitän",
-      "DESCRIPTION": "Manage usage and credits for AIAgent AI.",
+      "DESCRIPTION": "Manage usage and credits for AiAgent AI.",
       "BUTTON_TXT": "Buy more credits",
       "DOCUMENTS": "Documents",
       "RESPONSES": "Responses",
-      "UPGRADE": "AIAgent is not available on the free plan, upgrade now to get access to topics, copilot and more."
+      "UPGRADE": "AiAgent is not available on the free plan, upgrade now to get access to topics, copilot and more."
     },
     "CHAT_WITH_US": {
       "TITLE": "Brauchen Sie Hilfe?",

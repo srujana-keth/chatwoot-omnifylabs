@@ -280,7 +280,7 @@
     "REPORTS": "Pārskati",
     "SETTINGS": "Iestatījumi",
     "CONTACTS": "Kontaktpersonas",
-    "AI_AGENT": "AIAgent",
+    "AI_AGENT": "AiAgent",
     "AI_AGENT_TOPICS": "Asistenti",
     "AI_AGENT_DOCUMENTS": "Dokumenti",
     "AI_AGENT_RESPONSES": "Bieži uzdotie jautājumi",
@@ -359,12 +359,12 @@
       "BUTTON_TXT": "Doties uz norēķinu portālu"
     },
     "AI_AGENT": {
-      "TITLE": "AIAgent",
-      "DESCRIPTION": "Pārvaldīt AIAgent AI lietošanu un kredītus.",
+      "TITLE": "AiAgent",
+      "DESCRIPTION": "Pārvaldīt AiAgent AI lietošanu un kredītus.",
       "BUTTON_TXT": "Iegādāties vairāk kredītu",
       "DOCUMENTS": "Dokumenti",
       "RESPONSES": "Atbildes",
-      "UPGRADE": "AIAgent nav pieejams bezmaksas abonementā. Modernizējiet abonementu tūlīt, lai piekļūtu asistentiem un copilot."
+      "UPGRADE": "AiAgent nav pieejams bezmaksas abonementā. Modernizējiet abonementu tūlīt, lai piekļūtu asistentiem un copilot."
     },
     "CHAT_WITH_US": {
       "TITLE": "Nepieciešama palīdzība?",

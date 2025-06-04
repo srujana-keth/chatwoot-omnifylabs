@@ -489,7 +489,7 @@ const actions = {
     commit(types.SET_CONTEXT_MENU_CHAT_ID, chatId);
   },
 
-  getInboxAIAgentTopicById: async ({ commit }, conversationId) => {
+  getInboxAiAgentTopicById: async ({ commit }, conversationId) => {
     try {
       const response = await ConversationApi.getInboxTopic(conversationId);
       commit(types.SET_INBOX_AI_AGENT_TOPIC, response.data);

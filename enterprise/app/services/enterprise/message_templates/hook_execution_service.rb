@@ -1,23 +1,23 @@
 module Enterprise::MessageTemplates::HookExecutionService
   def trigger_templates
     super
-    return unless should_process_aiAgent_response?
-    return perform_handoff unless inbox.aiAgent_active?
+    return unless should_process_ai_agent_response?
+    return perform_handoff unless inbox.ai_agent_active?
 
-    AIAgent::Conversation::ResponseBuilderJob.perform_later(
+    AiAgent::Conversation::ResponseBuilderJob.perform_later(
       conversation,
-      conversation.inbox.aiAgent_topic
+      conversation.inbox.ai_agent_topic
     )
   end
 
-  def should_process_aiAgent_response?
-    conversation.pending? && message.incoming? && inbox.aiAgent_topic.present?
+  def should_process_ai_agent_response?
+    conversation.pending? && message.incoming? && inbox.ai_agent_topic.present?
   end
 
   def perform_handoff
     return unless conversation.pending?
 
-    Rails.logger.info("AIAgent limit exceeded, performing handoff mid-conversation for conversation: #{conversation.id}")
+    Rails.logger.info("AiAgent limit exceeded, performing handoff mid-conversation for conversation: #{conversation.id}")
     conversation.messages.create!(
       message_type: :outgoing,
       account_id: conversation.account.id,

@@ -1,7 +1,7 @@
 module Enterprise::AsyncDispatcher
   def listeners
     super + [
-      AIAgentListener.instance
+      AiAgentListener.instance
     ]
   end
 end

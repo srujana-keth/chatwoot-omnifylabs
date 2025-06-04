@@ -70,8 +70,8 @@ describe ChatwootHub do
     end
   end
 
-  context 'when fetching aiAgent settings' do
-    it 'returns the aiAgent settings' do
+  context 'when fetching ai_agent settings' do
+    it 'returns the ai_agent settings' do
       account = create(:account)
       stub_request(:post, ChatwootHub::AI_AGENT_ACCOUNTS_URL).with(
         body: { installation_identifier: described_class.installation_identifier, chatwoot_account_id: account.id, account_name: account.name }
@@ -79,7 +79,7 @@ describe ChatwootHub do
         body: { account_email: 'test@test.com', account_id: '123', access_token: '123', topic_id: '123' }.to_json
       )
 
-      expect(described_class.get_aiAgent_settings(account).body).to eq(
+      expect(described_class.get_ai_agent_settings(account).body).to eq(
         {
           account_email: 'test@test.com',
           account_id: '123',

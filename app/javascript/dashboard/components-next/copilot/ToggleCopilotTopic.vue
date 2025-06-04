@@ -36,7 +36,7 @@ const activeTopicLabel = computed(() => {
       <template #trigger="{ toggle, isOpen }">
         <Button
           :label="activeTopicLabel"
-          icon="i-woot-aiAgent"
+          icon="i-woot-ai_agent"
           ghost
           slate
           xs

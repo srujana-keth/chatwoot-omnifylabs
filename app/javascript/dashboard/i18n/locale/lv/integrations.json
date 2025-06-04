@@ -20,10 +20,10 @@
     "LEARN_MORE": "Uzzināt vairāk par integrācijām",
     "LOADING": "Integrāciju iegūšana",
     "AI_AGENT": {
-      "DISABLED": "AIAgent jūsu kontā nav iespējots.",
+      "DISABLED": "AiAgent jūsu kontā nav iespējots.",
       "CLICK_HERE_TO_CONFIGURE": "Noklikšķiniet šeit, lai konfigurētu",
-      "LOADING_CONSOLE": "Notiek AIAgent konsoles ielāde...",
-      "FAILED_TO_LOAD_CONSOLE": "Neizdevās ielādēt AIAgent konsoli. Lūdzu, mēģiniet vēlreiz."
+      "LOADING_CONSOLE": "Notiek AiAgent konsoles ielāde...",
+      "FAILED_TO_LOAD_CONSOLE": "Neizdevās ielādēt AiAgent konsoli. Lūdzu, mēģiniet vēlreiz."
     },
     "WEBHOOK": {
       "SUBSCRIBED_EVENTS": "Abonētie Notikumi",
@@ -358,23 +358,23 @@
       "MESSAGE_PLACEHOLDER": "Rakstiet savu ziņojumu...",
       "HEADER": "Playground",
       "DESCRIPTION": "Use this playground to send messages to your topic and check if it responds accurately, quickly, and in the tone you expect.",
-      "CREDIT_NOTE": "Messages sent here will count toward your AIAgent credits."
+      "CREDIT_NOTE": "Messages sent here will count toward your AiAgent credits."
     },
     "PAYWALL": {
-      "TITLE": "Modernizējiet abonementu, lai izmantotu AIAgent AI",
-      "AVAILABLE_ON": "AIAgent nav pieejams bezmaksas abonementā.",
+      "TITLE": "Modernizējiet abonementu, lai izmantotu AiAgent AI",
+      "AVAILABLE_ON": "AiAgent nav pieejams bezmaksas abonementā.",
       "UPGRADE_PROMPT": "Modernizējiet savu abonementu, lai iegūtu piekļuvi viruālajiem asistentiem un copilot.",
       "UPGRADE_NOW": "Pāriet uz maksas versiju tagad",
       "CANCEL_ANYTIME": "Jūs varat jebkurā laikā mainīt vai atcelt savu versiju"
     },
     "ENTERPRISE_PAYWALL": {
-      "AVAILABLE_ON": "AIAgent AI funkcija ir pieejama tikai maksas abonementā.",
+      "AVAILABLE_ON": "AiAgent AI funkcija ir pieejama tikai maksas abonementā.",
       "UPGRADE_PROMPT": "Modernizējiet savu abonementu, lai iegūtu piekļuvi viruālajiem asistentiem un copilot.",
       "ASK_ADMIN": "Lai pārietu uz maksas versiju, lūdzu sazinieties ar savu administratoru."
     },
     "BANNER": {
-      "RESPONSES": "Jūs esat izmantojis vairāk kā 80% no sava atbilžu ierobežojuma. Lai turpinātu izmantot AIAgent AI, lūdzu, atjauniniet abonementu.",
-      "DOCUMENTS": "Sasniegts dokumentu limits. Atjauniniet abonementu, lai turpinātu izmantot AIAgent AI."
+      "RESPONSES": "Jūs esat izmantojis vairāk kā 80% no sava atbilžu ierobežojuma. Lai turpinātu izmantot AiAgent AI, lūdzu, atjauniniet abonementu.",
+      "DOCUMENTS": "Sasniegts dokumentu limits. Atjauniniet abonementu, lai turpinātu izmantot AiAgent AI."
     },
     "FORM": {
       "CANCEL": "Atcelt",
@@ -458,8 +458,8 @@
         "TITLE": "Asistenti nav pieejami",
         "SUBTITLE": "Izveidot palīgu, lai sniegtu lietotājiem ātras un precīzas atbildes. Tas var mācīties no Jūsu palīdzības rakstiem un iepriekšējām sarunām.",
         "FEATURE_SPOTLIGHT": {
-          "TITLE": "AIAgent Topic",
-          "NOTE": "AIAgent Topic engages directly with customers, learns from your help docs and past conversations, and delivers instant, accurate responses. It handles the initial queries, providing quick resolutions before  transferring to an agent when needed."
+          "TITLE": "AiAgent Topic",
+          "NOTE": "AiAgent Topic engages directly with customers, learns from your help docs and past conversations, and delivers instant, accurate responses. It handles the initial queries, providing quick resolutions before  transferring to an agent when needed."
         }
       }
     },
@@ -503,8 +503,8 @@
         "TITLE": "Dokumenti nav pieejami",
         "SUBTITLE": "Jūsu palīgs izmanto dokumentus, lai izveidotu bieži uzdotos jautājumus. Jūs varat importēt dokumentus, lai nodrošinātu kontekstu savam palīgam.",
         "FEATURE_SPOTLIGHT": {
-          "TITLE": "AIAgent Document",
-          "NOTE": "A document in AIAgent serves as a knowledge resource for the topic. By connecting your help center or guides, AIAgent can analyze the content and provide accurate responses for customer inquiries."
+          "TITLE": "AiAgent Document",
+          "NOTE": "A document in AiAgent serves as a knowledge resource for the topic. By connecting your help center or guides, AiAgent can analyze the content and provide accurate responses for customer inquiries."
         }
       }
     },
@@ -584,8 +584,8 @@
         "TITLE": "Bieži uzdoto jautājumu saraksti nav atrasti",
         "SUBTITLE": "Bieži uzdotie jautājumi palīdz Jūsu asistentam sniegt ātras un precīzas atbildes uz Jūsu klientu jautājumiem. Tos var ģenerēt automātiski no jūsu satura vai pievienot manuāli.",
         "FEATURE_SPOTLIGHT": {
-          "TITLE": "AIAgent FAQ",
-          "NOTE": "AIAgent FAQs detects common customer questions—whether missing from your knowledge base or frequently asked—and generates relevant FAQs to improve support. You can review each suggestion and decide whether to approve or reject it."
+          "TITLE": "AiAgent FAQ",
+          "NOTE": "AiAgent FAQs detects common customer questions—whether missing from your knowledge base or frequently asked—and generates relevant FAQs to improve support. You can review each suggestion and decide whether to approve or reject it."
         }
       }
     },
