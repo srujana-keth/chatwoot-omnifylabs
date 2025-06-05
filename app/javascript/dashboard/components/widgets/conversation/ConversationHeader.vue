@@ -128,6 +128,13 @@ export default {
         FEATURE_FLAGS.LINEAR
       );
     },
+    sentimentClass() {
+      const sentiment = this.chat?.content_attributes?.sentiment;
+      if (sentiment === 'positive') return 'text-green-700';
+      if (sentiment === 'negative') return 'text-red-700';
+      if (sentiment === 'neutral') return 'text-yellow-700';
+      return '';
+    },
   },
 };
 </script>
@@ -175,9 +182,9 @@ export default {
           </div>
 
           <div
-            class="flex items-center gap-2 overflow-hidden text-xs conversation--header--actions text-ellipsis whitespace-nowrap"
+            class="flex items-center gap-2 overflow-hidden text-xs text-ellipsis whitespace-nowrap"
           >
-            <InboxName v-if="hasMultipleInboxes" :inbox="inbox" />
+            <InboxName v-if="hasMultipleInboxes" :inbox="inbox" class="!m-0" />
             <span v-if="isSnoozed" class="font-medium text-n-amber-10">
               {{ snoozedDisplayText }}
             </span>
@@ -209,7 +216,9 @@ export default {
           <!-- <strong
             :class="`sentiment-${conversation.content_attributes.sentiment}`"
           > -->
-          {{ chat.content_attributes.sentiment }}
+          <span :class="sentimentClass" class="ml-1">
+            {{ chat.content_attributes.sentiment }}
+          </span>
           <!-- </strong> -->
         </div>
         <div class="my-2">
@@ -217,27 +226,12 @@ export default {
           <!-- <strong
             :class="`sentiment-${conversation.content_attributes.LANGUAGE}`"
           > -->
-          {{ chat.content_attributes.language || 'N/A' }}
+          <span class="ml-1 text-slate-700">
+            {{ chat.content_attributes.language || 'N/A' }}
+          </span>
           <!-- </strong> -->
         </div>
       </div>
     </div>
   </div>
 </template>
-
-<style lang="scss" scoped>
-.conversation--header--actions {
-  ::v-deep .inbox--name {
-    @apply m-0;
-  }
-}
-.sentiment-positive {
-  color: #155724; /* Green */
-}
-.sentiment-negative {
-  color: #721c24; /* Red */
-}
-.sentiment-neutral {
-  color: #856404; /* Yellow/Orange */
-}
-</style>

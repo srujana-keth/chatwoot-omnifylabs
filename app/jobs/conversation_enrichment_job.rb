@@ -20,5 +20,6 @@ class ConversationEnrichmentJob < ApplicationJob
       end
 
     conversation.update(content_attributes: enrichment)
+    conversation.dispatch_conversation_updated_event(conversation.previous_changes)
   end
 end

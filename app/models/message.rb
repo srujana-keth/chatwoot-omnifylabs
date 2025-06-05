@@ -423,7 +423,10 @@ class Message < ApplicationRecord
     # Enrich conversation level (so frontend can directly read)
     conversation.content_attributes ||= {}
     conversation.content_attributes.merge!(enrichment)
-    conversation.save!
+    if conversation.changed?
+      conversation.save!
+      conversation.dispatch_conversation_updated_event(conversation.previous_changes)
+    end
   end
 end
 
