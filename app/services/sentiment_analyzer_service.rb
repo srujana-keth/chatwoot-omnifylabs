@@ -1,28 +1,35 @@
 class SentimentAnalyzerService
-  POSITIVE_KEYWORDS = ['thank you', 'great', 'awesome', 'good', 'love', 'amazing', 'perfect', 'resolved'].freeze
-  NEGATIVE_KEYWORDS = ['issue', 'problem', 'bad', 'not working', 'hate', 'angry', 'broken', 'complaint'].freeze
-
   def initialize(text)
-    @text = text.to_s.downcase
+    @text = text
   end
 
   def analyze
-    {
-      sentiment: detect_sentiment,
-      language: detect_language
-    }
+    sentiment = run_sentiment_analysis
+    sentiment = adjust_for_negation(@text, sentiment)
+    { sentiment: sentiment, language: detect_language }
   end
 
   private
 
-  def detect_sentiment
-    return 'positive' if POSITIVE_KEYWORDS.any? { |word| @text.include?(word) }
-    return 'negative' if NEGATIVE_KEYWORDS.any? { |word| @text.include?(word) }
-
-    'neutral'
+  def run_sentiment_analysis
+    analyzer = Sentimental.new
+    analyzer.load_defaults
+    analyzer.sentiment(@text).to_s
   end
 
   def detect_language
     'en'
+  end
+
+  # Simple negation handling patch
+  def adjust_for_negation(text, sentiment)
+    negation_words = %w[not don't never isn't wasn't no hardly scarcely barely doesn't didn't won't can't couldn't]
+
+    if negation_words.any? { |word| text.downcase.include?(word) }
+      return 'negative' if sentiment == 'positive'
+      return 'neutral' if sentiment == 'neutral'
+    end
+
+    sentiment
   end
 end

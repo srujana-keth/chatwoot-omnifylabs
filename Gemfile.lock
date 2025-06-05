@@ -722,6 +722,7 @@ GEM
       activerecord (>= 4)
       activesupport (>= 4)
     selectize-rails (0.12.6)
+    sentimental (1.5.0)
     sentry-rails (5.19.0)
       railties (>= 5.0)
       sentry-ruby (~> 5.19.0)
@@ -967,6 +968,7 @@ DEPENDENCIES
   scout_apm
   scss_lint
   seed_dump
+  sentimental
   sentry-rails (>= 5.19.0)
   sentry-ruby
   sentry-sidekiq (>= 5.19.0)

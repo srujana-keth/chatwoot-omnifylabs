@@ -10,8 +10,15 @@ class Api::V1::Widget::ConversationsController < Api::V1::Widget::BaseController
     ActiveRecord::Base.transaction do
       process_update_contact
       @conversation = create_conversation
+
+      message_content = message_params[:content]
+      if message_content.present?
+        enrichment = SentimentAnalyzerService.new(message_content).analyze
+        @conversation.content_attributes = enrichment
+      end
+
+      @conversation.save!
       conversation.messages.create!(message_params)
-      # TODO: Temporary fix for message type cast issue, since message_type is returning as string instead of integer
       conversation.reload
     end
   end

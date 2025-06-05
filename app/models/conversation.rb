@@ -119,9 +119,6 @@ class Conversation < ApplicationRecord
   after_create_commit :notify_conversation_creation
   after_create_commit :load_attributes_created_by_db_triggers
 
-  before_create :initialize_content_attributes
-  after_commit :enqueue_enrichment_job, on: [:create, :update]
-
   delegate :auto_resolve_after, to: :account
 
   def can_reply?
@@ -300,25 +297,6 @@ class Conversation < ApplicationRecord
   # creating db triggers
   trigger.before(:insert).for_each(:row) do
     "NEW.display_id := nextval('conv_dpid_seq_' || NEW.account_id);"
-  end
-
-  def initialize_content_attributes
-    message_content = begin
-      additional_attributes['message']
-    rescue StandardError
-      nil
-    end
-
-    if message_content.present?
-      enrichment = SentimentAnalyzerService.new(message_content).analyze
-      self[:content_attributes] = enrichment
-    else
-      self[:content_attributes] = { sentiment: 'neutral', language: 'en' }
-    end
-  end
-
-  def enqueue_enrichment_job
-    ConversationEnrichmentJob.perform_later(id)
   end
 end
 Conversation.include_mod_with('Concerns::Conversation')

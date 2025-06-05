@@ -406,6 +406,25 @@ class Message < ApplicationRecord
 
     ConversationEnrichmentJob.perform_later(conversation_id)
   end
+
+  after_create_commit :enrich_conversation
+
+  def enrich_conversation
+    return unless incoming?
+    return if content.blank?
+
+    enrichment = SentimentAnalyzerService.new(content).analyze
+
+    # Enrich message level
+    self.content_attributes ||= {}
+    self.content_attributes.merge!(enrichment)
+    save!
+
+    # Enrich conversation level (so frontend can directly read)
+    conversation.content_attributes ||= {}
+    conversation.content_attributes.merge!(enrichment)
+    conversation.save!
+  end
 end
 
 Message.prepend_mod_with('Message')
