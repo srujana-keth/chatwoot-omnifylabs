@@ -402,7 +402,7 @@ class Message < ApplicationRecord
 
   def trigger_conversation_enrichment
     return unless incoming?
-    return unless content.present?
+    return if content.blank?
 
     ConversationEnrichmentJob.perform_later(conversation_id)
   end

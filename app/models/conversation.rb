@@ -111,6 +111,7 @@ class Conversation < ApplicationRecord
   has_many :attachments, through: :messages
   has_many :reporting_events, dependent: :destroy_async
 
+  before_validation :initialize_content_attributes, on: :create
   before_save :ensure_snooze_until_reset
   before_create :determine_conversation_status
   before_create :ensure_waiting_since
@@ -292,6 +293,12 @@ class Conversation < ApplicationRecord
     return unless additional_attributes['referer']
 
     self['additional_attributes']['referer'] = nil unless url_valid?(additional_attributes['referer'])
+  end
+
+  def initialize_content_attributes
+    self.content_attributes ||= {}
+    self.content_attributes['language'] ||= additional_attributes&.dig('browser_language') || 'en'
+    self.content_attributes['sentiment'] ||= 'neutral'
   end
 
   # creating db triggers

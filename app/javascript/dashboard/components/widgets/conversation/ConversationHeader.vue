@@ -212,7 +212,7 @@ export default {
 
       <div v-if="chat.content_attributes" class="mt-2">
         <div class="my-2">
-          <strong>{{ $t('Sentiment:') }}</strong>
+          <strong>{{ $t('CONVERSATION.SENTIMENT') }}</strong>
           <!-- <strong
             :class="`sentiment-${conversation.content_attributes.sentiment}`"
           > -->
@@ -222,7 +222,7 @@ export default {
           <!-- </strong> -->
         </div>
         <div class="my-2">
-          <strong>{{ $t('Language:') }}</strong>
+          <strong>{{ $t('CONVERSATION.LANGUAGE') }}</strong>
           <!-- <strong
             :class="`sentiment-${conversation.content_attributes.LANGUAGE}`"
           > -->
