@@ -238,6 +238,7 @@ group :development, :test do
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   gem 'seed_dump'
+  gem 'sentimental', require: 'sentimental'
   gem 'shoulda-matchers'
   gem 'simplecov', '0.17.1', require: false
   gem 'spring'

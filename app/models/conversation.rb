@@ -8,6 +8,7 @@
 #  assignee_last_seen_at  :datetime
 #  cached_label_list      :text
 #  contact_last_seen_at   :datetime
+#  content_attributes     :json
 #  custom_attributes      :jsonb
 #  first_reply_created_at :datetime
 #  identifier             :string
@@ -110,6 +111,7 @@ class Conversation < ApplicationRecord
   has_many :attachments, through: :messages
   has_many :reporting_events, dependent: :destroy_async
 
+  before_validation :initialize_content_attributes, on: :create
   before_save :ensure_snooze_until_reset
   before_create :determine_conversation_status
   before_create :ensure_waiting_since
@@ -293,11 +295,16 @@ class Conversation < ApplicationRecord
     self['additional_attributes']['referer'] = nil unless url_valid?(additional_attributes['referer'])
   end
 
+  def initialize_content_attributes
+    self.content_attributes ||= {}
+    self.content_attributes['language'] ||= additional_attributes&.dig('browser_language') || 'en'
+    self.content_attributes['sentiment'] ||= 'neutral'
+  end
+
   # creating db triggers
   trigger.before(:insert).for_each(:row) do
     "NEW.display_id := nextval('conv_dpid_seq_' || NEW.account_id);"
   end
 end
-
 Conversation.include_mod_with('Concerns::Conversation')
 Conversation.prepend_mod_with('Conversation')

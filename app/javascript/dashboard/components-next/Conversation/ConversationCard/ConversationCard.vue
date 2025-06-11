@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/no-bare-strings-in-template -->
 <script setup>
 import { computed, ref } from 'vue';
 import { getInboxIconByType } from 'dashboard/helper/inbox';
@@ -128,6 +129,27 @@ const onCardClick = e => {
         :conversation="conversation"
         :account-labels="accountLabels"
       />
+      <div
+        v-if="conversation && conversation.content_attributes"
+        class="mt-1 text-xs text-n-slate-700"
+      >
+        <span v-if="conversation.content_attributes.sentiment">
+          {{ $t('CONVERSATION_PAGE.SENTIMENT') }}
+          <!-- <strong
+            :class="`sentiment-${conversation.content_attributes.sentiment}`"
+          > -->
+          {{ chat.content_attributes.sentiment }}
+          <!-- </strong> -->
+        </span>
+        <span v-if="conversation.content_attributes.language" class="ml-2">
+          {{ $t('CONVERSATION_PAGE.LANGUAGE') }}
+          <!-- <strong
+            :class="`sentiment-${conversation.content_attributes.language}`"
+          > -->
+          {{ chat.content_attributes.language }}
+          <!-- </strong> -->
+        </span>
+      </div>
     </div>
   </div>
 </template>
